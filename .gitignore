@@ -1,0 +1,21 @@
+# latex
+*.aux
+*.blg
+*.brf
+*.dpth
+*.dvi
+*.end
+*.log
+*.out
+*.ps
+*.tex~
+*.bbl
+*.nav
+*.snm
+*.toc
+*.vrb
+
+# python
+*.pyc
+*.pyo
+
