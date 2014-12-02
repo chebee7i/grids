@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\pagestyle{empty}
+\begin{document}
+
+% Adapted from:
+%   http://tex.stackexchange.com/questions/6019/drawing-hexagons
+%
+% x=3*(minimum size)/2
+% y=\sqrt{3/4}*(minimum size)/2
+%
+
+\definecolor{color0}{RGB}{178,223,138}
+\definecolor{color2}{RGB}{166,206,227}
+\definecolor{color1}{RGB}{31,120,180}
+
+\tikzset{
+  box/.style={
+    regular polygon,
+    regular polygon sides=6,
+    minimum size=10mm,
+    inner sep=0mm,
+    outer sep=0mm,
+    rotate=90,
+  draw=gray,
+  ultra thin
+  }
+}
+
+\begin{tikzpicture}[x=4.330127mm,y=7.5mm]
+    \node[box,rotate=0,fill=color0] (000) at (0,0) {};
+    \node[box,rotate=0,fill=color0] (001) at (2,0) {};
+    \node[box,rotate=0,fill=color0] (002) at (1,-1) {};
+
+    \node[box,rotate=0,fill=color0] (010) at (5,0) {};
+    \node[box,rotate=0,fill=color1] (011) at (7,0) {};
+    \node[box,rotate=0,fill=color1] (012) at (6,-1) {};
+
+    \node[box,rotate=0,fill=color1] (100) at (0,-3) {};
+    \node[box,rotate=0,fill=color0] (101) at (2,-3) {};
+    \node[box,rotate=0,fill=color1] (102) at (1,-4) {};
+
+    \node[box,rotate=0,fill=color1] (110) at (5,-3) {};
+    \node[box,rotate=0,fill=color1] (111) at (7,-3) {};
+    \node[box,rotate=0,fill=color0] (112) at (6,-4) {};
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (000.center) -- (002.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (001.center) -- (002.center);
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (010.center) -- (012.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (011.center) -- (012.center);
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (100.center) -- (102.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (101.center) -- (102.center);
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (110.center) -- (112.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (111.center) -- (112.center);
+
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[x=4.330127mm,y=7.5mm]
+    \node[box,rotate=0,fill=color0] (000) at (0,0) {};
+    \node[box,rotate=0,fill=color0] (001) at (2,0) {};
+    \node[box,rotate=0,fill=color0] (002) at (1,-1) {};
+
+    \node[box,rotate=0,fill=color0] (010) at (5,0) {};
+    \node[box,rotate=0,fill=color1] (011) at (7,0) {};
+    \node[box,rotate=0,fill=color1] (012) at (6,-1) {};
+
+    \node[box,rotate=0,fill=color1] (100) at (0,-3) {};
+    \node[box,rotate=0,fill=color0] (101) at (2,-3) {};
+    \node[box,rotate=0,fill=color1] (102) at (1,-4) {};
+
+    \node[box,rotate=0,fill=color1] (110) at (5,-3) {};
+    \node[box,rotate=0,fill=color1] (111) at (7,-3) {};
+    \node[box,rotate=0,fill=color0] (112) at (6,-4) {};
+
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[x=4.330127mm,y=7.5mm]
+    \node[box,rotate=0,fill=color0] (000) at (0,0) {};
+    \node[box,rotate=0,fill=color0] (001) at (2,0) {};
+    \node[box,rotate=0,fill=color0] (002) at (1,-1) {};
+
+    \node[box,rotate=0,fill=color0] (010) at (0,-3) {};
+    \node[box,rotate=0,fill=color1] (011) at (2,-3) {};
+    \node[box,rotate=0,fill=color1] (012) at (1,-4) {};
+
+    \node[box,rotate=0,fill=color1] (100) at (0,-6) {};
+    \node[box,rotate=0,fill=color0] (101) at (2,-6) {};
+    \node[box,rotate=0,fill=color1] (102) at (1,-7) {};
+
+    \node[box,rotate=0,fill=color1] (110) at (0,-9) {};
+    \node[box,rotate=0,fill=color1] (111) at (2,-9) {};
+    \node[box,rotate=0,fill=color0] (112) at (1,-10) {};
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (000.center) -- (002.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (001.center) -- (002.center);
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (010.center) -- (012.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (011.center) -- (012.center);
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (100.center) -- (102.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (101.center) -- (102.center);
+
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (110.center) -- (112.center);
+    \draw[red,thick,shorten >=2mm,shorten <=2mm,->] (111.center) -- (112.center);
+\end{tikzpicture}
+
+\newpage
+
+\begin{tikzpicture}[x=4.330127mm,y=7.5mm]
+    \node[box,rotate=0,fill=color0] (000) at (0,0) {};
+    \node[box,rotate=0,fill=color0] (001) at (2,0) {};
+    \node[box,rotate=0,fill=color0] (002) at (1,-1) {};
+
+    \node[box,rotate=0,fill=color0] (010) at (0,-3) {};
+    \node[box,rotate=0,fill=color1] (011) at (2,-3) {};
+    \node[box,rotate=0,fill=color1] (012) at (1,-4) {};
+
+    \node[box,rotate=0,fill=color1] (100) at (0,-6) {};
+    \node[box,rotate=0,fill=color0] (101) at (2,-6) {};
+    \node[box,rotate=0,fill=color1] (102) at (1,-7) {};
+
+    \node[box,rotate=0,fill=color1] (110) at (0,-9) {};
+    \node[box,rotate=0,fill=color1] (111) at (2,-9) {};
+    \node[box,rotate=0,fill=color0] (112) at (1,-10) {};
+
+\end{tikzpicture}
+
+
+\end{document}

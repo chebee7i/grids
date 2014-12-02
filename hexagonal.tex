@@ -1,0 +1,20 @@
+\documentclass{article}
+
+% 33.1 inches by 46.8 inches
+% 841 mm by 1189 mm
+\usepackage[a0paper, landscape, margin=.3in, top=1in]{geometry}
+
+\usepackage{tikz}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=2,rotate=90]
+  \foreach \i in {0,...,16}
+  \foreach \j in {0,...,20} {
+  \foreach \a in {0,120,-120} \draw (3*\i,2*sin{60}*\j) -- +(\a:1);
+  \foreach \a in {0,120,-120} \draw (3*\i+3*cos{60},2*sin{60}*\j+sin{60}) -- +(\a:1);}
+\end{tikzpicture}
+
+\end{document}
