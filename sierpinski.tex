@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[a0paper, landscape, margin=.3in, top=1in]{geometry}
+\usepackage{tikz}
+
+\usetikzlibrary{lindenmayersystems}
+
+\begin{document}%
+\pgfdeclarelindenmayersystem{Sierpinski triangle}{
+    \symbol{X}{\pgflsystemdrawforward}
+    \symbol{Y}{\pgflsystemdrawforward}
+    \rule{X -> X-Y+X+Y-X}
+    \rule{Y -> YY}
+}%
+
+
+\begin{center}
+\def\trianglewidth{11cm}%
+\foreach \level in {0,...,5}{%
+  \tikzset{
+      l-system={step=\trianglewidth/(2^\level), order=\level, angle=-120}
+  }%
+  \begin{tikzpicture}
+      \fill [black] (0,0) -- ++(0:\trianglewidth) -- ++(120:\trianglewidth) -- cycle;
+      \draw [draw=none] (0,0) l-system
+      [l-system={Sierpinski triangle, axiom=X},fill=white];
+  \end{tikzpicture}\hspace{1in}
+}%
+\\[2in]
+\def\trianglewidth{70cm}%
+\def\level{9}
+\tikzset{
+    l-system={step=\trianglewidth/(2^\level), order=\level, angle=-120}
+}%
+\begin{tikzpicture}
+    \fill [black] (0,0) -- ++(0:\trianglewidth) -- ++(120:\trianglewidth) -- cycle;
+    \draw [draw=none] (0,0) l-system
+    [l-system={Sierpinski triangle, axiom=X},fill=white];
+\end{tikzpicture}
+\end{center}
+\end{document}
