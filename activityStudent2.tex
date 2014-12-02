@@ -1,0 +1,115 @@
+\documentclass{article}
+
+\usepackage[margin=1.2in]{geometry}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+
+\usetikzlibrary{lindenmayersystems}
+
+\pgfdeclarelindenmayersystem{Sierpinski triangle}{
+    \symbol{X}{\pgflsystemdrawforward}
+    \symbol{Y}{\pgflsystemdrawforward}
+    \rule{X -> X-Y+X+Y-X}
+    \rule{Y -> YY}
+}%
+
+
+\begin{document}
+
+\section*{Overview}
+
+Complex patterns often arise from repeatedly applying a simpler set of rules.
+In this activity, we explore a decentralized and spatially-extended computational model known as a cellular automaton. Then we explore the output of its computation when given a particular rule set and initial condition.\\
+
+\noindent Work together as a group to complete each step of the activity. Write yours answers to the questions on the large sheet of paper, and be sure to write large enough so that other groups can see your answers.
+
+\section*{Activity}
+
+\begin{enumerate}
+	\item Grab a single sheet labeled ``Rule 90''. Tape it to a window or pin
+	it to a board, so that all members in your group can see and draw on it.
+
+	\item Beginning with the first row, fill out the first $6$ rows by applying
+	the cellular automaton's rules. Make sure everyone understands how to
+	apply the rules.
+
+	\item Using a ``divide and conquer'' approach, quickly fill out the rest
+	of the grid. This means that every one in the group should pick up a marker
+	and try to apply the rules at the same time.
+
+		\begin{itemize}
+		\item[\textbf{Q1}:] What feature of the rules makes it possible to cooperatively
+		fill out the rest of the grid?
+
+		\item[\textbf{Q2}:] Could one person work on filling out the top half of the grid,
+		while another person worked on filling out the bottom half?
+		Why or why not?
+
+		\item[\textbf{Q3}:] Why is color of the middle square in each triplet
+	%	\tikz[scale=.3]{
+		 %\def\i{0}
+		 %\draw[fill=white] (\i + 0, 0) rectangle (\i + 1, 1);
+     %\draw[fill=white] (\i + 1, 0) rectangle (\i + 2, 1);
+     %\draw[fill=white] (\i + 2, 0) rectangle (\i + 3, 1);
+  %}
+  is not important? Find a simpler description of the rules that does not rely on
+  the middle square. Describe it in words.
+
+		\end{itemize}
+
+\end{enumerate}
+
+\section*{Bonus}
+
+If you finish the previous activity early, try the following:
+
+	\begin{enumerate}
+		\item Where does the ``$90$'' in ``Rule $90$'' come from? Hint: $90 = 2^6 + 2^4 + 2^3 + 2^1$.
+
+		\item Consider the following rule:
+		\def\trianglewidth{.5cm}%
+		\def\level{0}
+		\tikzset{
+		    l-system={step=\trianglewidth/(2^\level), order=\level, angle=-120}
+		}%
+		\tikz[baseline=1pt]{
+		    \fill [black] (0,0) -- ++(0:\trianglewidth) -- ++(120:\trianglewidth) -- cycle;
+		    \draw [draw=none] (0,0) l-system
+		    [l-system={Sierpinski triangle, axiom=X},fill=white];
+		}
+		{\Large$\rightarrow$}
+		\def\level{1}
+		\tikzset{
+		    l-system={step=\trianglewidth/(2^\level), order=\level, angle=-120}
+		}%
+		\tikz[baseline=1pt]{
+		    \fill [black] (0,0) -- ++(0:\trianglewidth) -- ++(120:\trianglewidth) -- cycle;
+		    \draw [draw=none] (0,0) l-system
+		    [l-system={Sierpinski triangle, axiom=X},fill=white];
+		}
+
+		You begin with an equilateral triangle, having side length equal to $1$.
+		Then, apply the rule recursively to each subsequent triangle. What is the output of this computation? What are the formulas for the perimeter
+		and area of the pattern as a function of the number of iterations? What is
+		the perimeter and area as the number of iterations tends to infinity?\\
+
+	\end{enumerate}
+
+\section*{Resources}
+
+If you want to learn more, try searching for some of the following keywords:
+\begin{quote}
+		fractals, cellular automata, iterated function systems, chaos game, \\Sierpinski triangle, Turing complete, game of life, Mandelbrot set
+\end{quote}
+
+\noindent Here are some fun webpages and a nice YouTube video:
+\begin{quote}
+	\url{http://ecademy.agnesscott.edu/~lriddle/ifs/ifs.htm}\\
+	\url{http://www.kevs3d.co.uk/dev/lsystems}\\
+	\url{https://www.youtube.com/watch?v=5plLxMnbtAw}
+\end{quote}
+
+\end{document}
