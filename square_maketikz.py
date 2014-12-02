@@ -163,11 +163,27 @@ def grid_and_solution(rule, gridsize, ic, filename):
     with open(filename, 'w') as f:
         f.write(doc)
 
-if __name__ == '__main__':
+def large_random():
+    rule = 90
+    gridsize = (65,110)
+    ic = 'random'
+    filename = 'Poster_Rule90_DemoRandom.tex'
+
+    content = poster(rule, gridsize, ic, solution=True)
+    doc = template_document % (content,)
+    with open(filename, 'w') as f:
+        f.write(doc)
+
+def main():
     grid_and_solution(90, (16,31), 'single', 'Poster_Rule90_Single.tex')
+    np.random.seed(123)
     grid_and_solution(90, (17,31), 'random', 'Poster_Rule90_Random.tex')
 
     ic = np.zeros(31)
     ic[7:10] = 1
     ic[21:24] = 1
     grid_and_solution(90, (17,31), ic, 'Poster_Rule90_Custom.tex')
+
+if __name__ == '__main__':
+    main()
+    pass
