@@ -1,0 +1,205 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+
+\usetikzlibrary{lindenmayersystems}
+
+\pgfdeclarelindenmayersystem{Sierpinski triangle}{
+    \symbol{X}{\pgflsystemdrawforward}
+    \symbol{Y}{\pgflsystemdrawforward}
+    \rule{X -> X-Y+X+Y-X}
+    \rule{Y -> YY}
+}%
+
+
+\begin{document}
+
+\noindent\textcolor{red}{\textsc{Instructor Version}}
+
+\section*{Overview}
+
+Complex patterns often arise from repeatedly applying a simpler set of rules.
+In this activity, we explore how two sets of rules generate a well-known fractal.\\
+
+\noindent Work together as a group to complete the activities. Write the
+answers to the questions on the large sheet of paper, and be sure to write
+large enough  so that other groups can see your answers.
+
+\section*{Activity A (18 minutes)}
+
+\begin{enumerate}
+	\item Grab a single sheet labeled ``Rule 90''. Tape it to a window or pin
+	it to a board, so that all members in your group can see and draw on it.
+
+	\item Beginning with the first row, fill out the first $6$ rows by applying
+	the cellular automaton's rules. Make sure everyone understands how to
+	apply the rules.
+
+	\item Using a ``divide and conquer'' approach, quickly fill out the rest
+	of the grid. This means that every one in the group should pick up a marker
+	and try to apply the rules at the same time.
+
+		\begin{itemize}
+		\item[\textbf{Q1}:] What feature of the rules makes it possible to cooperatively
+		fill out the rest of the grid?
+
+		\item[\textbf{A1}:] The rules are applied locally, and only require knowledge
+		of the 3 cells directly above it. This means, that students can apply the
+		rules in a parallel fashion\ldots it is embarrassingly parallel.
+
+		\item[\textbf{Q2}:] Could one person work on filling out the top half of the grid,
+		while another person worked on filling out the bottom half?
+		Why or why not?
+
+		\item[\textbf{A2}:] No. The rules require the previous three cells. So you
+		must always work down from the top.
+
+		\item[\textbf{Q3}:] Why is color of the middle square in each triplet
+	%	\tikz[scale=.3]{
+		 %\def\i{0}
+		 %\draw[fill=white] (\i + 0, 0) rectangle (\i + 1, 1);
+     %\draw[fill=white] (\i + 1, 0) rectangle (\i + 2, 1);
+     %\draw[fill=white] (\i + 2, 0) rectangle (\i + 3, 1);
+  %}
+  is not important? Find a simpler description of the rules that does not rely on
+  the middle square. Describe it in words.
+
+  \item[\textbf{A3}:] The rule set is symmetric. For example, $010$ and $000$
+  both map to the same output. The simpler rule set is just to look at the
+  L and R cells above. An ideal description might be something like: The next
+  square is black if just one of the L or R squares is black. It is an
+  exclusive or (xor) function.
+
+		\end{itemize}
+
+\end{enumerate}
+
+\section*{Activity B (12 minutes)}
+
+\begin{enumerate}
+	\item Grab a calculator and a single sheet labeled ``Pascal's Triangle''.
+	Tape the sheet to a window or pin it to a board, so that all members in your
+	group can see and draw on it.
+
+	\item Begin at the top of the triangle and fill out the first 8 rows of
+	Pascal's triangle, using the addition rule specified on the sheet. Make sure
+	everyone understands how to apply the rule.
+
+	\item Color all the circles with an even number inside them.
+
+	\begin{itemize}
+		\item[\textbf{Q1}:] Using only the colors of the circles, find a
+		new set of rules that will allow you to finish coloring the rest of
+		Pascal's triangle, without having to do addition.
+
+		\item[\textbf{A1}:] New set of rules is just like the cellular automata.
+		Next circle is colored iff only one of the previous circles is colored.
+
+		\item [\textbf{Q2}:] How does the rule on colors relate to the properties
+		of even and oddness?
+
+		\item[\textbf{A2}:] odd + even = odd, odd + odd = even, etc.
+	\end{itemize}
+
+	\item Finish coloring Pascal's triangle. [It is not necessary to put numbers
+	inside the circles.]
+
+	\begin{itemize}
+
+		\item[\textbf{Q3}:] What pattern do you see? Compare and contrast it
+		to the pattern we saw for ``Rule 90''.
+
+		\item[\textbf{A3}:] It is the same: Sierpinski's triangle. Some differences
+		are the grid. We could also use a hexagonal grid.
+
+		\item[\textbf{Q4}:] How does the coloring rule set compare to the simplified
+		rule set that we found for ``Rule 90''?
+
+		\item[\textbf{A3}:] It is the same, but with different spacing. Generally,
+		there were two different rule sets, applied on different lattices, that
+		ended up being similar and generating the same pattern.
+
+
+	\end{itemize}
+
+
+\end{enumerate}
+
+%\newpage
+
+\subsection*{Bonus Questions}
+	\begin{enumerate}
+		\item Where does the ``$90$'' in ``Rule $90$'' come from? Hint: $90 = 2^6 + 2^4 + 2^3 + 2^1$.
+
+		\textbf{Answer:}\\
+		$90$ is the decimal equivalent of the rule written as the binary number $01011010_2$.\\
+		Recall, the number $425$ has a decimal expansion of $425 = 4 \cdot 10^2 + 2 \cdot 10^1 + 5 \cdot 10^0$.\\
+		Similarly, $01011010_2 = 0 \cdot 2^7 + 1 \cdot 2^6 + 0 \cdot 2^5 + 1 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0$.
+
+		\item The Sierpinski triangle can also be generated using the following rule:
+		\def\trianglewidth{.5cm}%
+		\def\level{0}
+		\tikzset{
+		    l-system={step=\trianglewidth/(2^\level), order=\level, angle=-120}
+		}%
+		\tikz[baseline=1pt]{
+		    \fill [black] (0,0) -- ++(0:\trianglewidth) -- ++(120:\trianglewidth) -- cycle;
+		    \draw [draw=none] (0,0) l-system
+		    [l-system={Sierpinski triangle, axiom=X},fill=white];
+		}
+		{\Large$\rightarrow$}
+		\def\level{1}
+		\tikzset{
+		    l-system={step=\trianglewidth/(2^\level), order=\level, angle=-120}
+		}%
+		\tikz[baseline=1pt]{
+		    \fill [black] (0,0) -- ++(0:\trianglewidth) -- ++(120:\trianglewidth) -- cycle;
+		    \draw [draw=none] (0,0) l-system
+		    [l-system={Sierpinski triangle, axiom=X},fill=white];
+		}
+
+
+		Begin with an equilateral triangle, having side length equal to $1$.
+		Then, apply the rule repeatedly. What are the formulas for the perimeter
+		and area of the pattern as a function of the number of iterations? What is
+		the perimeter and area as the number of iterations tends to infinity?\\
+
+		\textbf{Answer:}
+		\begin{align*}
+		P(n) &= 3 \left(\frac{3}{2}\right)^n & \lim_{n\to\infty} P(n) &= \infty \\
+		A(n) &= \frac{\sqrt{3}}{{4}} \left(\frac{3}{4}\right)^n & \lim_{n\to\infty} A(n) &= 0
+		\end{align*}
+
+		\item For Pascal's triangle, $x$ and $y$ correspond to $\binom{n}{k}$ and
+				  $\binom{n}{k+1}$. The ``$x+y$'' circle corresponds to $\binom{n+1}{k+1}$.
+		      Show that generation rule takes the following form:
+		      $\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$.\\
+
+		      \textbf{Answer:}\\
+		      $$\binom{n}{k} + \binom{n}{k+1}
+		      = \binom{n}{k} + \frac{n-k}{k+1} \binom{n}{k}
+		      = \frac{n+1}{k+1} \binom{n}{k}
+		      = \binom{n+1}{k+1}$$
+
+	\end{enumerate}
+
+\section*{Resources}
+
+If you want to learn more, try searching for some of the following keywords:
+\begin{quote}
+		fractals, cellular automata, iterated function systems, chaos game, \\Sierpinski triangle, Turing complete, game of life, Mandelbrot set
+\end{quote}
+
+\noindent Here are some fun webpages and a nice YouTube video:
+\begin{quote}
+	\url{http://ecademy.agnesscott.edu/~lriddle/ifs/ifs.htm}\\
+	\url{http://www.kevs3d.co.uk/dev/lsystems}\\
+	\url{https://www.youtube.com/watch?v=5plLxMnbtAw}
+\end{quote}
+
+\end{document}
