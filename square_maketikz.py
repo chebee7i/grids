@@ -185,5 +185,5 @@ def main():
     grid_and_solution(90, (17,31), ic, 'Poster_Rule90_Custom.tex')
 
 if __name__ == '__main__':
-    main()
+    #main()
     pass
