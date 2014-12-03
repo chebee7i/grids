@@ -1,0 +1,23 @@
+\documentclass{article}
+
+% 33.1 inches by 46.8 inches
+% 841 mm by 1189 mm
+\usepackage[letterpaper, landscape, margin=.5in, top=.5in]{geometry}
+
+% Grid size of 1.48 inches
+% Need: 16x31 grid.
+% 23 in by 45.88 in
+
+% margin of .3 inches keeps us within bounds.
+
+\usepackage{tikz}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+\begin{tikzpicture}[scale=.79]
+\draw[step=1, black, very thin] (0,0) grid (31,24);
+\end{tikzpicture}
+\end{document}
+
