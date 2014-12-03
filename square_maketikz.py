@@ -163,27 +163,50 @@ def grid_and_solution(rule, gridsize, ic, filename):
     with open(filename, 'w') as f:
         f.write(doc)
 
-def large_random():
+def large_demos():
     rule = 90
     gridsize = (65,110)
-    ic = 'random'
-    filename = 'Poster_Rule90_DemoRandom.tex'
 
-    content = poster(rule, gridsize, ic, solution=True)
-    doc = template_document % (content,)
-    with open(filename, 'w') as f:
-        f.write(doc)
-
-def main():
-    grid_and_solution(90, (16,31), 'single', 'Poster_Rule90_Single.tex')
+    runs = [
+        ('single', 'Poster_Rule90_DemoSingle.tex'),
+        ('random', 'Poster_Rule90_DemoRandom.tex'),
+    ]
     np.random.seed(123)
-    grid_and_solution(90, (17,31), 'random', 'Poster_Rule90_Random.tex')
+    for ic, filename in runs:
+        content = poster(rule, gridsize, ic, solution=True)
+        content = content.replace('[scale=3.7]', '[scale=1]')
+        doc = template_document % (content,)
+        with open(filename, 'w') as f:
+            f.write(doc)
+
+def triplet(rule):
+    basename = "Poster_Rule{0}".format(rule)
+    grid_and_solution(rule, (16,31), 'single', basename + '_Single.tex')
+    np.random.seed(123)
+    grid_and_solution(rule, (17,31), 'random', basename + '_Random.tex')
 
     ic = np.zeros(31)
     ic[7:10] = 1
     ic[21:24] = 1
-    grid_and_solution(90, (17,31), ic, 'Poster_Rule90_Custom.tex')
+    grid_and_solution(rule, (17,31), ic, basename + '_Custom.tex')
+
+def main():
+    triplet(90)
+    triplet(106)
+    triplet(150)
+
+def rulesets_only():
+    tikz = []
+    for rule in [45, 90, 105, 110, 150]:
+      tikz.append(r"\begin{center}%s\end{center}" % (ruleset(rule),) )
+    content = '\\newpage\n'.join(tikz)
+    final = template_document % (content,)
+    with open('rules.tex', 'w') as f:
+      f.write(final)
+
 
 if __name__ == '__main__':
     #main()
     pass
+    #large_demos()
+    rulesets_only()
